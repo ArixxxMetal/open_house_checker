@@ -54,7 +54,7 @@ namespace open_house_checker.Controllers
 
                 List<SessionUserViewModel> lst = new List<SessionUserViewModel>();
                 List<SessionUserViewModel> _LoggedUser = _context.GetLoginUserSP.FromSqlRaw
-                    ("USE [TEST_PROJECTS] EXEC [open_house].[get_loginuservalues] @PARAM_EMP_NUM, @PARAM_PASS", employeenumberParam, employeepasswordParam).ToList();
+                    ("USE [db_a87bdd_fbc] EXEC [open_house].[get_loginuservalues] @PARAM_EMP_NUM, @PARAM_PASS", employeenumberParam, employeepasswordParam).ToList();
 
                 if (_LoggedUser[0].isallowed == true)
                 {

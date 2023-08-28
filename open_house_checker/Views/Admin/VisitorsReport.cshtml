@@ -1,12 +1,12 @@
 ﻿
 @{
-    ViewData["Title"] = "EmployeesReport";
+    ViewData["Title"] = "VisitorsReport";
     Layout = "~/Views/Shared/_DashboardLayout.cshtml";
 }
 @section Styles {
     @*<link href="~/css/Customcss.css" rel="stylesheet" />*@
 }
-<div class="container-fluid" ng-app="EmployeesReportApp" ng-controller="EmployeesReportController">
+<div class="container-fluid" ng-app="VisitorsReportApp" ng-controller="VisitorsReportController">
 
     <!-- begin row -->
     <div class="col-12">
@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-12 m-b-30">
                 <div class="d-block d-lg-flex flex-nowrap align-items-center">
-                    <div class="page-title mr-2 pr-4 border-right"><h1>Empleados <i class="fa fa-user-circle text-info"></i></h1></div>
+                    <div class="page-title mr-2 pr-4 border-right"><h1>Visitantes <i class="fa fa-user-circle text-info"></i></h1></div>
 
                     <div class="d-flex align-items-center secondary-menu text-center" style="margin-left:1%">
                         <input type="text" name="name" ng-model="SrchString" class="form-control" placeholder="Busqueda General" />
@@ -44,8 +44,8 @@
                 </div>
             </div>
         </div>
+        <!-- End View Title -->
         <div class="card card-statistics" ng-app="SindicateReportApp" ng-controller="SindicateReportController">
-
             <div class="card-body">
                 <div class="table table-responsive table-borderless table-hover" style="max-height:60vh">
                     <span style="color:black"><strong>Total Filtrado: {{filtered.length}}</strong> </span>
@@ -87,12 +87,16 @@
             </div>
         </div>
 
+    </div>
+    <!-- end row -->
+
+
+
 </div>
 @section scripts {
     <script src="~/App/Angularjs188.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/2.2.2/alasql.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
-    <script src="~/App/Admin/EmployeesReportApp.js"></script>
-    @*<script src="~/App/Services/ServicesApp.js"></script>*@
+    <script src="~/App/Admin/VisitorsReportApp.js"></script>
 }
 

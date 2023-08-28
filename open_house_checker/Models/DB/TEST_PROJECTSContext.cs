@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using open_house_checker.Models.StoredProcedures;
+using open_house_checker.Models.ViewModels.Admin;
 using open_house_checker.Models.ViewModels.Login;
 
 namespace open_house_checker.Models.DB
@@ -24,6 +25,8 @@ namespace open_house_checker.Models.DB
 
         public DbSet<SessionUserViewModel> GetLoginUserSP { get; set; }
         public DbSet<Sp_Return> CheckReturnSP { get; set; }
+        public DbSet<EmployeeVisitorViewModel> EmployeeVisitorQuery { get; set; }
+        public DbSet<EmployeeReportViewModel> EmployeeReportQuery { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -35,6 +38,12 @@ namespace open_house_checker.Models.DB
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Ignore<EmployeeVisitorViewModel>();
+            modelBuilder.Entity<EmployeeVisitorViewModel>();  //register stored procedure.
+
+            modelBuilder.Ignore<EmployeeReportViewModel>();
+            modelBuilder.Entity<EmployeeReportViewModel>();  //register stored procedure.
+
             modelBuilder.Ignore<SessionUserViewModel>();
             modelBuilder.Entity<SessionUserViewModel>();  //register stored procedure.
 
