@@ -1,0 +1,190 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font_gray {
+    color: #202020;
+}
+.font_poppings {
+    font-family: 'Poppins', sans-serif;
+}
+
+.button_add_visit {
+    padding: 25px 30px;
+    background-color: #174E91;
+    color: #AADEF7;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_add_visit:hover {
+        background: #AADEF7;
+        color: #174E91;
+    }
+
+    .button_add_visit:disabled {
+        background: #26485F;
+        color: #8EA3AD;
+    }
+
+.button_check_finish {
+    padding: 25px 30px;
+    background-color: #AADEF7;
+    color: #174E91;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_check_finish:hover {
+        background: #174E91;
+        color: #AADEF7;
+    }
+
+    .button_check_finish:disabled {
+        background: #8EA3AD;
+        color: #26485F;
+    }
+
+.button_delete_visit {
+    padding: 12px 15px;
+    background-color: #8F1622;
+    color: #E5A5AB;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_delete_visit:hover {
+        background: #E5A5AB;
+        color: #8F1622;
+    }
+
+    .button_delete_visit:disabled {
+        background: #72474B;
+        color: #D6BFC1;
+    }
+
+.button_visit_type {
+    padding: 12px 15px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_visit_type:hover {
+        background: #CCCCCC;
+        color: black;
+    }
+
+    .button_visit_type:disabled {
+        background: #4C4C4C;
+        color: white;
+    }
+
+
+.button_visit_age {
+    padding: 12px 15px;
+    background-color: #57a9db;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_visit_age:hover {
+        background: #CDDBE3;
+        color: white;
+    }
+
+    .button_visit_age:disabled {
+        background: #416177;
+        color: #ABC3D1;
+    }
+
+.button_return {
+    padding: 12px 15px;
+    background-color: #EAB46C;
+    color: #3A2D1B;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_return:hover {
+        background: #3A2D1B;
+        color: #EAB46C;
+    }
+
+.button_visit_masculine {
+    padding: 12px 15px;
+    background-color: #41A0D4;
+    color: #D7F1FC;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_visit_masculine:hover {
+        background: #D7F1FC;
+        color: #41A0D4;
+    }
+
+    .button_visit_masculine:disabled {
+        background: #416177;
+        color: #D5D1E0;
+    }
+
+.button_visit_femenine {
+    padding: 12px 15px;
+    background-color: #DE377A;
+    color: #F9C5DC;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_visit_femenine:hover {
+        background: #F9C5DC;
+        color: #DE377A;
+    }
+
+    .button_visit_femenine:disabled {
+        background: #8D5C6A;
+        color: #E3D8DB;
+    }

@@ -1,0 +1,215 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CheckinLayout.cshtml";
+}
+
+<div class="card" ng-app="CheckInApp" ng-controller="CheckInController" style="max-width:120vh">
+    <div class="card-header">
+        <div class="card-heading">
+            <div class="form-row">
+
+                <div class="col-4">
+                    <img class="img-fluid" src="~/img/foxconn_logo.png" />
+                </div>               
+                <div class="col-4"><br /><h3 style="color: #174E91;" class="font_poppings">&nbsp; &nbsp; &nbsp; &nbsp; EMPLEADOS: 321</h3></div>
+                
+                <div class="col-4"><br /><h3 style="color: #174E91;" class="font_poppings"> VISITAS: 615</h3></div>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div>
+            <form>
+                
+                <div class="form-row" ng-show="ShowEmployeeCheck">
+                    <br />
+                    <div class="form-group col-4">
+                        <label class="font_gray" style="font-size: 18px;"><strong>Numero de Empleado *</strong></label>
+                        <input type="text" style="font-size: 16px; font-weight:bold;" ng-model="EmployeeNumber" class="form-control" id="numeroempleado" ng-keypress="GetEmpName($event)" placeholder="Numero de Empleado">
+                        <small  id="" class="form-text text-muted font_gray"><strong>Obligatorio*</strong></small>
+                    </div>
+                    <div class="form-group col-8">
+                        <label class="font_gray" style="font-size: 18px;"><strong>Nombre *</strong></label>
+                        <input type="text" style="font-size: 16px; font-weight:bold; color:black" class="form-control" ng-model="EmployeeName" placeholder="Nombre de Empleado" ng-disabled="true">
+                        <small class="form-text text-muted font_gray"><strong>Obligatorio*</strong></small>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="form-group col-2"></div>
+                    <div class="form-group col-4">
+                        <button type="button" ng-click="ShowVisitCard()" class="btn btn-block btn-square button_add_visit" ng-disabled="EmployeeNumber.length == 0">Agregar Visitas</button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" ng-click="CheckEmployee()" class="btn btn-block btn-square button_check_finish" ng-disabled="EmployeeNumber.length == 0">Finalizar</button>
+                    </div>
+                    <div class="form-group col-2"></div>
+
+                </div>
+                <div class="form-row" ng-show="ShowVisitCheck">
+
+                    <div class="form-group col-4">
+                        <br />
+                        <h3>Visitas De Empleado: &nbsp;<strong class="font_poppings">{{ CurrentVisitCount }}</strong></h3>
+                        
+                    </div>
+                    <div class="form-group col-8">
+                        
+                        <button type="button" ng-click="RestoreVisitObject()" class="button_delete_visit"><i style="font-size: 20px;" class="fa fa-trash"></i></button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="form-group col-12">
+                        <h4>Tipo De Visitante: &nbsp; &nbsp; <strong class="font_poppings"> {{ VisitType }}</strong> </h4>
+                    </div>
+                    <div class="form-group col-6">
+                        <button type="button" style="font-size: 17px;" class="btn btn-block btn-round button_visit_type" ng-click="SetVisitType(1)" ng-disabled="EmployeeNumber.length == 0">Adulto</button>
+                    </div>
+                    <div class="form-group col-6">
+                        <button type="button" style="font-size: 17px;" class="btn btn-block btn-round button_visit_type" ng-click="SetVisitType(2)" ng-disabled="EmployeeNumber.length == 0">Infante</button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="form-group col-12">
+                        <h4>Sexo: &nbsp; &nbsp; <strong class="font_poppings">{{ VisitSex }}</strong> </h4>
+                    </div>
+                    <div class="form-group col-6">
+                        <button type="button" style="font-size: 17px;" class="btn btn-block btn-round button_visit_masculine" ng-click="SetVisitSex(1)" ng-disabled="VisitType.length == 0">
+                            Masculino
+                            </button>
+                    </div>
+                    <div class="form-group col-6">
+                        <button type="button" style="font-size: 17px;" class="btn btn-block btn-round button_visit_femenine" ng-click="SetVisitSex(2)" ng-disabled="VisitType.length == 0">
+                            Femenino
+                            </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="form-group col-4"></div>
+                    <div class="form-group col-4">
+                        <button type="button" ng-click="SetEmployeeVisits()" class="btn btn-block btn-square button_check_finish">
+                            Finalizar
+                        </button>
+                    </div>
+                    <div class="form-group col-4"></div>
+                </div>
+
+                <div class="form-row" ng-show="ShowVisitAge">
+
+                    <div class="form-group col-4">
+                        <h3>Edad: &nbsp; &nbsp; &nbsp; <strong class="font_poppings" style="font-size: 28px">{{ VisitAge }}</strong></h3>
+                    </div>
+                    <div class="form-group col-4">
+                        <h3 class="text-center">{{ LessThanOne }}</h3>
+                    </div>
+                    <div class="form-group col-4">
+                        
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="form-group col-4"></div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 17px;" class="btn btn-block btn-round button_return" ng-click="SumAge(-1)" ng-disabled="VisitSex.length == 0">
+                            Menor a 1
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_delete_visit" ng-click="RestoreAge()" ng-disabled="VisitSex.length == 0">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(1)" ng-disabled="VisitSex.length == 0">
+                            1
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(2)" ng-disabled="VisitSex.length == 0">
+                            2
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(3)" ng-disabled="VisitSex.length == 0">
+                            3
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(4)" ng-disabled="VisitSex.length == 0">
+                            4
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(5)" ng-disabled="VisitSex.length == 0">
+                            5
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(6)" ng-disabled="VisitSex.length == 0">
+                            6
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(7)" ng-disabled="VisitSex.length == 0">
+                            7
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(8)" ng-disabled="VisitSex.length == 0">
+                            8
+                        </button>
+                    </div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(9)" ng-disabled="VisitSex.length == 0">
+                            9
+                        </button>
+                    </div>
+                    <div class="form-group col-4"></div>
+                    <div class="form-group col-4">
+                        <button type="button" style="font-size: 20px;" class="btn btn-block btn-round button_visit_age" ng-click="SumAge(0)" ng-disabled="VisitSex.length == 0">
+                            0
+                        </button>
+                    </div>
+                    <div class="form-group col-4"></div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                    <div class="form-group col-1"></div>
+                    <div class="form-group col-5">
+                        <button type="submit" style="font-size: 17px;" class="btn btn-block btn-square button_add_visit" ng-click="AddVisitObject()" ng-disabled="VisitType.length == 0 && VisitSex.length == 0">Agregar Mas Visitas</button>
+                    </div>
+                    <div class="form-group col-5">
+                        <button type="submit" style="font-size: 17px;" class="btn btn-block btn-square button_check_finish" ng-click="SetEmployeeVisits()" ng-disabled="EmployeeNumber.length == 0">Finalizar</button>
+                    </div>
+                    <div class="form-group col-1"></div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/app/checkin/checkinapp.js"></script>
+}

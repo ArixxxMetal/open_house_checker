@@ -1,0 +1,62 @@
+﻿@model open_house_checker.Models.ViewModels.Login.LoginAccessViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="app-contant">
+    <div class="bg-white">
+        <div class="container-fluid p-0">
+            <div class="row no-gutters">
+                <div class="col-lg-6 align-self-center bg-gradient">
+                    <div class="d-flex align-items-center h-100-vh">
+                        <div class=" w-100">
+                            <div class="row no-gutters align-items-center justify-content-center">
+                                <div class="col-md-10 text-center m-b-40">
+
+                                    <!-- Login text -->
+                                    <div class="px-5">
+                                        <h2 class="text-white display-3 font-weight-normal">Iniciar Sesión</h2>
+                                        <span class="text-white">Bienvenido, por favor ingrese sus credenciales...</span>
+                                    </div>
+
+                                    <!-- newsletter -->
+                                    <div class="row no-gutters">
+                                        <div class="col-md-7 mx-auto">
+                                            <form asp-controller="Login" asp-action="Login" method="post" class="px-5 mt-3">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><strong>Usuario*</strong></label>
+                                                            <input type="text" class="form-control bg-white-inverse" name="Username" asp-for="Username" placeholder="Usuario">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="control-label"><strong>Contraseña*</strong></label>
+                                                            <input type="password" class="form-control bg-white-inverse" name="Password" asp-for="Password" placeholder="Contraseña">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12 mt-3">
+                                                        <button type="submit" class="btn btn-round btn-outline-light">Sign In</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 align-self-center">
+                    @*<img class="img-fluid" src="~/Template/assets/img/bg/coming-soon-bg.svg" alt="" />*@
+                    <img class="img-fluid" src="~/img/open_house_logo.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Template/assets/css/vendors.css" rel="stylesheet" />
+    <link href="~/Template/assets/css/style.css" rel="stylesheet" />
+    @RenderSection("Styles", false)
+</head>
+<body>
+    <div>
+        <div class="app">
+            <div class="app-wrap">
+                <div class="loader">
+                    <div class="h-100 d-flex justify-content-center">
+                        <div class="align-self-center">
+                            <img src="~/Template/assets/img/loader/loader.svg" />
+                        </div>
+                    </div>
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/Template/assets/js/vendors.js"></script>
+    <script src="~/Template/assets/js/app.js"></script>
+    <script src="~/App/Angularjs188.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
