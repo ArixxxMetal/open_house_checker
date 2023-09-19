@@ -6,7 +6,7 @@ app.controller("VisitorsReportController", function ($scope, $http) {
     angular.element(document).ready(function () {
 
         CheckEmployee();
-        GetTotalCheckEmployee();
+        GetTotalCheck()
     });
 
     $scope.CheckFilterModel = "";
@@ -31,7 +31,7 @@ app.controller("VisitorsReportController", function ($scope, $http) {
     $scope.DownloadReport = function () {
 
         // Validate if data was filtered
-        var Query = "SELECT id_rh, nombre_empleado, numero_puesto, nombre_puesto, numero_departamento, nombre_departamento, area, bum, checada_entrada, fecha_checada_entrada, checada_aprobada, fecha_checada_aprobada INTO XLSX('Sindicato-Reporte.xlsx',{headers:true}) FROM ?";
+        var Query = "SELECT * INTO XLSX('Visitas-OpenHouse.xlsx',{headers:true}) FROM ?";
 
         // To download the recor to excel
         alasql(Query, [$scope.filtered]);
@@ -53,12 +53,12 @@ app.controller("VisitorsReportController", function ($scope, $http) {
         // start httpRequest 
         $http({
             method: "POST",
-            url: "/Home/GetCheckSindicateReport",
+            url: "/Check/GetVisitorsReport",
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: {}
         }).then(function (response) {
 
-            $scope.EmployeeList = response.data;
+            $scope.VisitList = response.data;
 
         }, function errorCallBack(response) {
             console.error("Error to delete");
@@ -68,20 +68,20 @@ app.controller("VisitorsReportController", function ($scope, $http) {
 
     }
 
-    async function GetTotalCheckEmployee() {
+    async function GetTotalCheck() {
 
         // start httpRequest 
         $http({
             method: "POST",
-            url: "/Home/GetCheckCount",
+            url: "/Check/GetTotalCount",
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             data: {}
         }).then(function (response) {
             console.table(response.data);
             $scope.TotalChecked = response.data[0];
 
-            $scope.ApprovedPercentage = (($scope.TotalChecked.total_employees_approved / $scope.TotalChecked.total_employees) * 100).toFixed(2);
-            $scope.AssistPercentage = (($scope.TotalChecked.total_employees_checkin / $scope.TotalChecked.total_employees) * 100).toFixed(2);
+            //$scope.ApprovedPercentage = (($scope.TotalChecked.total_employees_approved / $scope.TotalChecked.total_employees) * 100).toFixed(2);
+            //$scope.AssistPercentage = (($scope.TotalChecked.total_employees_checkin / $scope.TotalChecked.total_employees) * 100).toFixed(2);
 
         }, function errorCallBack(response) {
             console.error("Error to delete");

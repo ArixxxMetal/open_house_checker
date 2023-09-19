@@ -10,7 +10,7 @@
 }
 
 .button_add_visit {
-    padding: 25px 30px;
+    padding: 12px 15px;
     background-color: #174E91;
     color: #AADEF7;
     font-weight: bold;
@@ -33,7 +33,7 @@
     }
 
 .button_check_finish {
-    padding: 25px 30px;
+    padding: 12px 15px;
     background-color: #AADEF7;
     color: #174E91;
     font-weight: bold;

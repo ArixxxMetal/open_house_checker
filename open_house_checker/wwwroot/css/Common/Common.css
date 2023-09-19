@@ -1,0 +1,82 @@
+﻿body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.font_gray {
+    color: #202020;
+}
+
+.font_poppings {
+    font-family: 'Poppins', sans-serif;
+}
+
+.input_bold {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.rounded_element {
+    background: rgb(23,78,145);
+    background: linear-gradient(90deg, rgba(23,78,145,1) 11%, rgba(23,108,209,1) 52%, rgba(0,116,255,1) 100%);
+    border-radius: 40%;
+}
+
+.foxconn_gradient {
+    background: rgb(23,78,145);
+    background: linear-gradient(90deg, rgba(23,78,145,1) 11%, rgba(23,108,209,1) 52%, rgba(0,116,255,1) 100%);
+}
+
+.foxconn_gradient_table {
+    background: rgb(23,78,145);
+    background: linear-gradient(180deg, rgba(23,78,145,1) 11%, rgba(23,108,209,1) 52%, rgba(0,116,255,1) 100%);
+}
+
+.button_check_finish {
+    padding: 13px 16px;
+    background-color: #AADEF7;
+    color: #174E91;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .button_check_finish:hover {
+        background: #174E91;
+        color: #AADEF7;
+    }
+
+    .button_check_finish:disabled {
+        background: #8EA3AD;
+        color: #26485F;
+    }
+
+.excel_button {
+    padding: 12px 14px;
+    background-color: #217346;
+    color: #A6C7B5;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+    .excel_button:hover {
+        background: #A6C7B5;
+        color: #217346;
+    }
+
+    .excel_button:disabled {
+        background: #8EA3AD;
+        color: #26485F;
+    }

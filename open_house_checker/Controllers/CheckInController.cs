@@ -9,5 +9,9 @@ namespace open_house_checker.Controllers
             return View();
         }
 
+        public IActionResult Stations()
+        {
+            return View();
+        }
     }
 }

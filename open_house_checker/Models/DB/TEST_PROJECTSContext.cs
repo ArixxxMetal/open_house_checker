@@ -25,6 +25,7 @@ namespace open_house_checker.Models.DB
 
         public DbSet<SessionUserViewModel> GetLoginUserSP { get; set; }
         public DbSet<Sp_Return> CheckReturnSP { get; set; }
+        public DbSet<get_total_count_ViewModel> GetTotalCountSP { get; set; }
         public DbSet<EmployeeVisitorViewModel> EmployeeVisitorQuery { get; set; }
         public DbSet<EmployeeReportViewModel> EmployeeReportQuery { get; set; }
 
@@ -46,6 +47,9 @@ namespace open_house_checker.Models.DB
 
             modelBuilder.Ignore<SessionUserViewModel>();
             modelBuilder.Entity<SessionUserViewModel>();  //register stored procedure.
+
+            modelBuilder.Ignore<get_total_count_ViewModel>();
+            modelBuilder.Entity<get_total_count_ViewModel>();  //register stored procedure.
 
             modelBuilder.Ignore<Sp_Return>();
             modelBuilder.Entity<Sp_Return>();  //register stored procedure.

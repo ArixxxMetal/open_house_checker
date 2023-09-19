@@ -43,35 +43,54 @@ namespace open_house_checker.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost]  //VALIDATE SECURITY SQL INJECTION
         public async Task<IActionResult> Login(LoginAccessViewModel _User)
         {
+            string validate_username;
+            if (_User.Username.Length == 1)
+            {
+                validate_username = _User.Username;
+            }
+            else
+            {
+                int half_string = _User.Username.Length / 2;
+                validate_username = _User.Username.Substring(half_string);
+            }
+            
             try
             {
-                string pass = EncriptPass(_User.Password);
-                var employeenumberParam = new SqlParameter("@PARAM_EMP_NUM", _User.Username);
-                var employeepasswordParam = new SqlParameter("@PARAM_PASS", pass);
-
-                List<SessionUserViewModel> lst = new List<SessionUserViewModel>();
-                List<SessionUserViewModel> _LoggedUser = _context.GetLoginUserSP.FromSqlRaw
-                    ("USE [db_a87bdd_fbc] EXEC [open_house].[get_loginuservalues] @PARAM_EMP_NUM, @PARAM_PASS", employeenumberParam, employeepasswordParam).ToList();
-
-                if (_LoggedUser[0].isallowed == true)
+                if (int.TryParse(validate_username, out int result))
                 {
-                    var claims = new List<Claim>
+                    string pass = EncriptPass(_User.Password);
+                    var employeenumberParam = new SqlParameter("@PARAM_EMP_NUM", _User.Username);
+                    var employeepasswordParam = new SqlParameter("@PARAM_PASS", pass);
+
+                    List<SessionUserViewModel> lst = new List<SessionUserViewModel>();
+                    List<SessionUserViewModel> _LoggedUser = _context.GetLoginUserSP.FromSqlRaw
+                        ("USE [db_a87bdd_fbc] EXEC [open_house].[get_loginuservalues] @PARAM_EMP_NUM, @PARAM_PASS", employeenumberParam, employeepasswordParam).ToList();
+
+                    if (_LoggedUser[0].isallowed == true)
+                    {
+                        var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, _User.Username)
                     };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-                    return RedirectToAction("EmployeesReport", "Admin");
+                        return RedirectToAction("EmployeesReport", "Admin");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Login");
+                    }
                 }
                 else
                 {
                     return RedirectToAction("Index", "Login");
                 }
+
             }
 
             catch (Exception ex)

@@ -1,0 +1,76 @@
+﻿
+
+/* Example for your Increment and Decrement buttons */
+.increment,
+.decrement {
+    padding: 6px 8px;
+    background-color: #174E91;
+    color: #AADEF7;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 4px;
+    overflow: hidden;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+/*    .increment:hover,
+    .decrement:hover {
+        background: #AADEF7;
+        color: #174E91;
+    }*/
+
+    .increment:active,
+    .decrement:active {
+        background: #AADEF7;
+        color: #174E91;
+    }
+
+    .increment:disabled,
+    .decrement:disabled {
+        background: #26485F;
+        color: #8EA3AD;
+        cursor: not-allowed;
+    }
+
+.foxconn_gradient {
+    background: rgb(23,78,145);
+    background: linear-gradient(90deg, rgba(23,78,145,1) 11%, rgba(23,108,209,1) 52%, rgba(0,116,255,1) 100%);
+}
+
+/* Style for the container */
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+    /* Style for the image */
+    .image-container img {
+        max-width: 100%;
+    }
+
+/* Style for the text */
+.image-text {
+    position: absolute;
+    top: 50%; /* Center vertically at 50% from the top */
+    left: 50%; /* Center horizontally at 50% from the left */
+    transform: translate(-50%, -50%); /* Center both horizontally and vertically */
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgba(23, 78, 145, 1);
+    padding: 5px;
+}
+
+    .image-text:active {
+        background: #AADEF7;
+        color: #174E91;
+    }
+
+/* CSS to hide the button */
+.invisible-button {
+    background: none;
+    border: none;
+    color: transparent;
+}

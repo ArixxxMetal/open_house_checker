@@ -6,6 +6,13 @@
     <title>@ViewBag.Title</title>
     <link href="~/Template/assets/css/vendors.css" rel="stylesheet" />
     <link href="~/Template/assets/css/style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="~/css/common/common.css" rel="stylesheet" />
     @RenderSection("Styles", false)
 </head>
 <body>
@@ -31,8 +38,8 @@
                     <div class="navbar-header d-flex align-items-center">
                         <a href="javascript:void:(0)" class="mobile-toggle"><i class="ti ti-align-right"></i></a>
                         <a class="navbar-brand" href="index.html">
-                            <img src="~/Img/open_house_logo.png" class="img-fluid logo-desktop" alt="logo" />
-                            <img src="~/Img/foxconn_logo.png" class="img-fluid logo-mobile" alt="logo" />
+                            <img src="~/Img/open_house_logo_white.png" class="img-fluid logo-desktop" alt="logo" />
+                            <img src="~/Img/logo_white.png" class="img-fluid logo-mobile" alt="logo" />
                         </a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -41,7 +48,7 @@
                     </button>
                     <!-- end navbar-header -->
                     <!-- begin navigation -->
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse font_poppings" id="navbarSupportedContent">
                         <div class="navigation d-flex">
                             <ul class="navbar-nav nav-left">
                                 <li class="nav-item">
@@ -59,11 +66,12 @@
                                 <li class="nav-item dropdown user-profile">
                                     <a href="javascript:void(0)" class="nav-link dropdown-toggle " id="navbarDropdown4"
                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src="~/Template/assets/img/avtar/02.jpg" alt="avtar-img">
-                                        <span class="bg-success user-status"></span>
+@*                                        <img src="~/Template/assets/img/avtar/02.jpg" alt="avtar-img">
+                                        <span class="bg-success user-status"></span>*@
+                                        <i class="ion ion-ios-power" style="color:#0074ff; font-size: 30px;"></i>
                                     </a>
                                     <div class="dropdown-menu animated fadeIn" aria-labelledby="navbarDropdown">
-                                        <div class="bg-gradient px-4 py-3">
+                                        <div class="foxconn_gradient px-4 py-3">
                                             <div class="d-flex align-items-center justify-content-between">
                                                 <div class="mr-1">
                                                     <h4 class="text-white mb-0">Admin Open House</h4>
@@ -92,15 +100,15 @@
                     <!-- begin sidebar-nav -->
                     <div class="sidebar-nav scrollbar scroll_light">
                         <ul class="metismenu " id="sidebarNav">
-                            <li class="nav-static-title">Open House</li>
+                            <li class="nav-static-title bold">Open House</li>
                             <li>
                                 <a href="/Admin/EmployeesReport" aria-expanded="false">
-                                    <i class="nav-icon fa fa-bar-chart"></i><span class="nav-title">Reporte Empleados</span>
+                                    <i class="nav-icon fa fa-bar-chart"></i><span class="nav-title bold">Reporte Empleados</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="/Admin/VisitorsReport" aria-expanded="false">
-                                    <i class="nav-icon fa fa-gears"></i><span class="nav-title">Reporte Visitas</span>
+                                    <i class="nav-icon fa fa-gears"></i><span class="nav-title bold">Reporte Visitas</span>
                                 </a>
                             </li>
                         </ul>

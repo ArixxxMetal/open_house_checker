@@ -14,85 +14,80 @@
         <div class="row">
             <div class="col-md-12 m-b-30">
                 <div class="d-block d-lg-flex flex-nowrap align-items-center">
-                    <div class="page-title mr-2 pr-4 border-right"><h1>Empleados <i class="fa fa-user-circle text-info"></i></h1></div>
+                    <div class="page-title mr-2 pr-4 border-right"><h1 class="font_poppings">Empleados <i class="fa fa-user-circle" style="color:#0074ff;"></i></h1></div>
 
                     <div class="d-flex align-items-center secondary-menu text-center" style="margin-left:1%">
                         <input type="text" name="name" ng-model="SrchString" class="form-control" placeholder="Busqueda General" />
                     </div>
                     <div class="d-flex align-items-center text-center" style="margin-left:1%">
-                        <button class="btn btn-icon btn-success" title="Descargar Excel" ng-click="DownloadReport()">
+                        <button class="excel_button" title="Descargar Excel" ng-click="DownloadReport()">
                             <i class="fa fa-file-excel-o"></i>
                         </button>
                     </div>
                     <div class="d-flex align-items-center text-center" style="margin-left:2%">
-                        <h4 style="color:purple">Total: {{ TotalChecked.total_employees }}</h4>
+                        
                     </div>
                     <div class="d-flex align-items-center text-center" style="margin-left:2%">
-                        <h4 style="color:forestgreen">Total Asistencia: {{ TotalChecked.total_employees_checkin }}</h4>
-
+                        <h4 class="font_poppings" style="color:#0074ff">Total Empleados: {{ TotalChecked.emp_count }}</h4>
                     </div>
                     <div class="d-flex align-items-center text-center" style="margin-left:1%">
-                        <h3 style="color:forestgreen"> {{ AssistPercentage }} %</h3>
+                        
                     </div>
                     <div class="d-flex align-items-center text-center" style="margin-left:2%">
-                        <h4 style="color:blue">Total Aprobados: {{ TotalChecked.total_employees_approved }}</h4>
+                        <h4 class="font_poppings" style="color:#0074ff">Total Visitas: {{ TotalChecked.visit_count }}</h4>
 
                     </div>
-                    <div class="d-flex align-items-center text-center" style="margin-left:1%">
-                        <h3 style="color:blue"> {{ ApprovedPercentage }} %</h3>
+                    <div class="d-flex align-items-center text-center" style="margin-left:1%">                       
+                    </div>
+                    <div class="d-flex align-items-center text-center" style="margin-left:2%">
+                        <h3 class="font_poppings" style="color: #176cd1">Total: {{ TotalChecked.total_count }}</h3>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card card-statistics" ng-app="SindicateReportApp" ng-controller="SindicateReportController">
+        <div class="card card-statistics">
 
             <div class="card-body">
                 <div class="table table-responsive table-borderless table-hover" style="max-height:60vh">
                     <span style="color:black"><strong>Total Filtrado: {{filtered.length}}</strong> </span>
                     <table class="table mb-0">
-                        <thead class="bg-info" style="color:aliceblue">
+                        <thead class="foxconn_gradient_table" style="color:aliceblue">
                             <tr>
                                 <th scope="col">Numero De Empleado</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Numero Puesto</th>
-                                <th scope="col">Nombre Puesto</th>
-                                <th scope="col">Num Depto</th>
-                                <th scope="col">Nombre Dpto</th>
-                                <th scope="col">Area</th>
-                                <th scope="col">Bum</th>
-                                <th scope="col">Entrada</th>
+                                <th scope="col">Nombre</th>                            
+                                <th scope="col">Checado</th>
                                 <th scope="col">Fecha De Entrada</th>
-                                <th scope="col">Aprobado</th>
-                                <th scope="col">Fecha Afiliacion</th>
+                                <th scope="col">Visitas Adultos</th>
+                                <th scope="col">Visitas Niños</th>
+                                <th scope="col">Visitas Hombres</th>     
+                                <th scope="col">Visitas Mujeres</th>
+                                <th scope="col">Visitas</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr ng-repeat="employee in filtered = (EmployeeList | filter: SrchString | filter:{checada_entrada: CheckInStatusModel} | filter:{checada_aprobada: CheckSindicateStatusModel})">
-                                <td style="color:black">{{ employee.id_rh }}</td>
-                                <td style="color:black">{{ employee.nombre_empleado }}</td>
-                                <td style="color:black">{{ employee.numero_puesto }}</td>
-                                <td style="color:black">{{ employee.nombre_puesto }}</td>
-                                <td style="color:black">{{ employee.numero_departamento }}</td>
-                                <td style="color:black">{{ employee.nombre_departamento }}</td>
-                                <td style="color:black">{{ employee.area }}</td>
-                                <td style="color:black">{{ employee.bum }}</td>
-                                <td style="color:black">{{ employee.checada_entrada }}</td>
-                                <td style="color:black">{{ employee.fecha_checada_entrada | date: 'dd MMM, yyyy  hh:mm a' }}</td>
-                                <td style="color:black">{{ employee.checada_aprobada }}</td>
-                                <td style="color:black">{{ employee.fecha_checada_aprobada | date: 'dd MMM, yyyy  hh:mm a' }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_id_rh }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_name }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_ischecked }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_check_date | date: 'dd MMM, yyyy  hh:mm a' }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_total_visit_adult }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_total_visit_child }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_total_visit_male }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_total_visit_female }}</td>
+                                <td class="bold" style="color:black">{{ employee.emp_total_visits }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-
+    </div>
 </div>
 @section scripts {
-    <script src="~/App/Angularjs188.js"></script>
+    @*<script src="~/App/Angularjs188.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/2.2.2/alasql.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.7.12/xlsx.core.min.js"></script>
-    <script src="~/App/Admin/EmployeesReportApp.js"></script>
-    @*<script src="~/App/Services/ServicesApp.js"></script>*@
+    @*<script src="~/App/Admin/EmployeesReportApp.js"></script>*@
+    <script src="~/app/admin/employeesreportapp.js"></script>
 }
 

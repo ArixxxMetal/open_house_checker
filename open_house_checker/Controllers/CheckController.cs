@@ -33,14 +33,12 @@ namespace open_house_checker.Controllers
                     "SELECT ET.Id, " +
                     "ET.emp_id_rh, " +
                     "ET.emp_name, " +
-                    "ET.emp_job_id, " +
-                    "ET.emp_job, " +
-                    "ET.emp_department, " +
-                    "ET.emp_dep_id, " +
-                    "ET.emp_area, " +
-                    "ET.emp_bum, " +
                     "ET.emp_ischecked, " +
                     "ET.emp_check_date, " +
+                    "(SELECT COUNT(*) FROM open_house.employee_visitors WHERE visit_emp_id = ET.Id AND visit_sex = 'MASCULINO') AS emp_total_visit_male, "+
+                    "(SELECT COUNT(*) FROM open_house.employee_visitors WHERE visit_emp_id = ET.Id AND visit_sex = 'FEMENINO') AS emp_total_visit_female, "+
+                    "(SELECT COUNT(*) FROM open_house.employee_visitors WHERE visit_emp_id = ET.Id AND visit_type = 'ADULTO') AS emp_total_visit_adult, "+
+                    "(SELECT COUNT(*) FROM open_house.employee_visitors WHERE visit_emp_id = ET.Id AND visit_type = 'INFANTE') AS emp_total_visit_child, "+
                     "(SELECT COUNT(*) FROM open_house.employee_visitors WHERE visit_emp_id = ET.Id) AS emp_total_visits " +
                     "FROM open_house.employee_table ET").
                     ToList();
@@ -81,6 +79,24 @@ namespace open_house_checker.Controllers
                 var ExceptionResponse = ex.Message;
                 return Json(ExceptionResponse);
             }
+        }
+
+        [HttpPost]
+        public JsonResult GetTotalCount()
+        {
+            try
+            {
+                List<get_total_count_ViewModel> lst = new List<get_total_count_ViewModel>();
+                List<get_total_count_ViewModel> _returncheck = _context.GetTotalCountSP.
+                    FromSqlRaw("USE [db_a87bdd_fbc] EXEC [open_house].[get_total_count]").ToList();
+
+                return Json(_returncheck);
+            }
+            catch (Exception ex)
+            {
+                var ExceptionResponse = ex.Message;
+                return Json(ExceptionResponse);
+            }
 
         }
 
@@ -110,17 +126,16 @@ namespace open_house_checker.Controllers
         [HttpPost]
         public JsonResult SaveEmployeeVisit([FromBody] List<VisitParameterViewModel> visits)
         {
-
             string employeenumberwithprefix = FixEmployeeNumber(visits[0].visit_emp_num);
+            var check_id_hr = new SqlParameter("@PARAM_HR_ID", employeenumberwithprefix);
+
+            List<Sp_Return> lst = new List<Sp_Return>();
+            List<Sp_Return> _returncheck = _context.CheckReturnSP.
+                FromSqlRaw("USE [db_a87bdd_fbc] " +
+                "EXEC [open_house].[set_employee_check] @PARAM_HR_ID", check_id_hr).ToList();
+
             try
             {
-                var check_id_hr = new SqlParameter("@PARAM_HR_ID", employeenumberwithprefix);
-
-                List<Sp_Return> lst = new List<Sp_Return>();
-                List<Sp_Return> _returncheck = _context.CheckReturnSP.
-                    FromSqlRaw("USE [db_a87bdd_fbc] " +
-                    "EXEC [open_house].[set_employee_check] @PARAM_HR_ID", check_id_hr).ToList();
-
                 foreach (var visit in visits)
                 {
                     var emp_id_hr = new SqlParameter("@PARAM_HR_ID", employeenumberwithprefix);
